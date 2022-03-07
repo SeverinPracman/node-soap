@@ -822,14 +822,13 @@ export class TypesElement extends Element {
 
   // fix#325
   public addChild(child) {
-    assert(child instanceof SchemaElement);
 
-    const targetNamespace = child.$targetNamespace || child.includes[0]?.namespace;
+    const targetNamespace = child.$targetNamespace;
 
     if (!this.schemas.hasOwnProperty(targetNamespace)) {
       this.schemas[targetNamespace] = child;
     } else {
-      console.error('Target-Namespace "' + targetNamespace + '" already in use by another Schema!');
+      this.schemas[targetNamespace] = child;
     }
   }
 }
